@@ -268,7 +268,7 @@ async function caricaOpzioni(selectId, jsonFile, descBoxId) {
 // ===============================
 // Inizializzazione per SCHEDA.HTML
 // ===============================
-(function initScheda() {
+function initScheda() {
   if (!window.location.pathname.endsWith("scheda.html")) return;
   const dati = JSON.parse(localStorage.getItem("schedaPersonaggio"));
   if (!dati) return;
@@ -307,70 +307,152 @@ async function caricaOpzioni(selectId, jsonFile, descBoxId) {
 
   // Coordinate su PDF
   const coords = {
-    nome:{x:40,y:25}, razza:{x:83.54,y:7.7}, classe:{x:128.62,y:7.7}, livello:{x:157.18,y:7.7},
-    background:{x:189.3,y:7.7}, ca:{x:67.1,y:26.05}, pf_max:{x:134.03,y:19.3},
-    forza:{x:20.75,y:45.51}, mod_forza:{x:20.75,y:52.51},
-    destrezza:{x:48.75,y:45.51}, mod_destrezza:{x:48.75,y:52.51},
-    costituzione:{x:83.75,y:45.51}, mod_costituzione:{x:83.75,y:52.51},
-    intelligenza:{x:114.75,y:45.51}, mod_intelligenza:{x:114.75,y:52.51},
-    saggezza:{x:145.75,y:45.51}, mod_saggezza:{x:145.75,y:52.51},
-    carisma:{x:184.75,y:45.51}, mod_carisma:{x:184.75,y:52.51},
-    equipaggiamento:{x:30,y:133.51}, note:{x:171.15,y:160.51},
-    abilita:{x:20.75,y:170.51}, percezione_passiva:{x:46,y:85},
-    intelligenza_passiva:{x:95,y:85}, visione:{x:34,y:88}, velocita:{x:83,y:88}, competenze:{x:36,y:211}
+    nome:{x:40,y:25}, 
+    razza:{x:83.54,y:7.7}, 
+    classe:{x:128.62,y:7.7}, 
+    livello:{x:157.18,y:7.7},
+    background:{x:189.3,y:7.7}, 
+    ca:{x:67.1,y:26.05}, 
+    pf_max:{x:134.03,y:19.3},
+    forza:{x:20.75,y:45.51}, 
+    mod_forza:{x:20.75,y:52.51},
+    destrezza:{x:48.75,y:45.51}, 
+    mod_destrezza:{x:48.75,y:52.51},
+    costituzione:{x:83.75,y:45.51}, 
+    mod_costituzione:{x:83.75,y:52.51},
+    intelligenza:{x:114.75,y:45.51}, 
+    mod_intelligenza:{x:114.75,y:52.51},
+    saggezza:{x:145.75,y:45.51}, 
+    mod_saggezza:{x:145.75,y:52.51},
+    carisma:{x:184.75,y:45.51}, 
+    mod_carisma:{x:184.75,y:52.51},
+    equipaggiamento:{x:30,y:133.51}, 
+    note:{x:171.15,y:160.51},
+    abilita:{x:20.75,y:170.51}, 
+    percezione_passiva:{x:46,y:85},
+    intelligenza_passiva:{x:95,y:85}, 
+    visione:{x:34,y:88}, 
+    velocita:{x:83,y:88}, 
+    competenze:{x:36,y:211}
   };
 
+    // --- SOTTOPARTE: handler "Salva PDF" robusto ---
   const pdfBtn = document.getElementById("download-pdf-btn");
   if (!pdfBtn) return;
-  pdfBtn.addEventListener("click", () => {
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF({ unit:"mm", format:"a4", orientation:"portrait" });
-    const img = new Image();
-    img.src = "assets/images/scheda_base.png";
-    img.crossOrigin = "anonymous";
-    img.onload = function() {
-      doc.addImage(img,"PNG",0,0,210,297);
-      doc.setFont("Helvetica","normal");
-      doc.setFontSize(10);
-      const drawCentered = (text,x,y,maxWidth) => {
-        if (!text && text!==0) text="";
-        if (typeof text==="string" && maxWidth) {
-          const lines=doc.splitTextToSize(text,maxWidth);
-          doc.text(lines,x,y,{align:"center"});
-        } else {
-          doc.text(String(text),x,y,{align:"center"});
-        }
-      };
-      drawCentered(dati.nome||"-",coords.nome.x,coords.nome.y);
-      drawCentered(dati.razza||"-",coords.razza.x,coords.razza.y);
-      drawCentered(dati.classe||"-",coords.classe.x,coords.classe.y);
-      drawCentered(dati.livello||"-",coords.livello.x,coords.livello.y);
-      drawCentered(dati.background||"-",coords.background.x,coords.background.y);
-      drawCentered(dati.classe_armatura||"-",coords.ca.x,coords.ca.y);
-      drawCentered(dati.forza||"-",coords.forza.x,coords.forza.y);
-      drawCentered(dati.destrezza||"-",coords.destrezza.x,coords.destrezza.y);
-      drawCentered(dati.costituzione||"-",coords.costituzione.x,coords.costituzione.y);
-      drawCentered(dati.intelligenza||"-",coords.intelligenza.x,coords.intelligenza.y);
-      drawCentered(dati.saggezza||"-",coords.saggezza.x,coords.saggezza.y);
-      drawCentered(dati.carisma||"-",coords.carisma.x,coords.carisma.y);
-      drawCentered(calcolaModificatore(dati.forza),coords.mod_forza.x,coords.mod_forza.y);
-      drawCentered(calcolaModificatore(dati.destrezza),coords.mod_destrezza.x,coords.mod_destrezza.y);
-      drawCentered(calcolaModificatore(dati.costituzione),coords.mod_costituzione.x,coords.mod_costituzione.y);
-      drawCentered(calcolaModificatore(dati.intelligenza),coords.mod_intelligenza.x,coords.mod_intelligenza.y);
-      drawCentered(calcolaModificatore(dati.saggezza),coords.mod_saggezza.x,coords.mod_saggezza.y);
-      drawCentered(calcolaModificatore(dati.carisma),coords.mod_carisma.x,coords.mod_carisma.y);
-      drawCentered(dati.pf||"-",coords.pf_max.x,coords.pf_max.y);
-      drawCentered(dati.equipaggiamento||"-",coords.equipaggiamento.x,coords.equipaggiamento.y,80);
-      drawCentered(dati.note||"-",coords.note.x,coords.note.y,80);
-      drawCentered(dati.percezionePassiva||"-",coords.percezione_passiva.x,coords.percezione_passiva.y);
-      drawCentered(dati.intelligenzaPassiva||"-",coords.intelligenza_passiva.x,coords.intelligenza_passiva.y);
-      drawCentered(dati.visione||"-",coords.visione.x,coords.visione.y);
-      drawCentered(dati.velocita||"-",coords.velocita.x,coords.velocita.y);
-      drawCentered(Array.isArray(dati.competenze)?dati.competenze.join(", "):"-",coords.competenze.x,coords.competenze.y,100);
-      doc.save("Scheda_Personaggio.pdf");
+
+  // risolve jsPDF in modo cross-CDN
+  function getJsPDFCtor() {
+    try {
+      if (window.jspdf && window.jspdf.jsPDF) return window.jspdf.jsPDF; // UMD (CDN moderno)
+      if (typeof window.jsPDF === "function") return window.jsPDF;        // globale vecchio
+    } catch (e) {}
+    return null;
+  }
+
+  // disegna tutto il testo
+  function drawAll(doc, dati, coords) {
+    doc.setFont("Helvetica", "normal");
+    doc.setFontSize(10);
+
+    const drawCentered = (text, x, y, maxWidth) => {
+      if (!text && text !== 0) text = "";
+      if (typeof text === "string" && maxWidth) {
+        const lines = doc.splitTextToSize(text, maxWidth);
+        doc.text(lines, x, y, { align: "center" });
+      } else {
+        doc.text(String(text), x, y, { align: "center" });
+      }
     };
+
+    // campi principali
+    drawCentered(dati.nome || "-", coords.nome.x, coords.nome.y);
+    drawCentered(dati.razza || "-", coords.razza.x, coords.razza.y);
+    drawCentered(dati.classe || "-", coords.classe.x, coords.classe.y);
+    drawCentered(dati.livello || "-", coords.livello.x, coords.livello.y);
+    drawCentered(dati.background || "-", coords.background.x, coords.background.y);
+
+    // CA
+    drawCentered(dati.classe_armatura || "-", coords.ca.x, coords.ca.y);
+
+    // Stat
+    drawCentered(dati.forza || "-", coords.forza.x, coords.forza.y);
+    drawCentered(dati.destrezza || "-", coords.destrezza.x, coords.destrezza.y);
+    drawCentered(dati.costituzione || "-", coords.costituzione.x, coords.costituzione.y);
+    drawCentered(dati.intelligenza || "-", coords.intelligenza.x, coords.intelligenza.y);
+    drawCentered(dati.saggezza || "-", coords.saggezza.x, coords.saggezza.y);
+    drawCentered(dati.carisma || "-", coords.carisma.x, coords.carisma.y);
+
+    // Mod
+    drawCentered(calcolaModificatore(dati.forza), coords.mod_forza.x, coords.mod_forza.y);
+    drawCentered(calcolaModificatore(dati.destrezza), coords.mod_destrezza.x, coords.mod_destrezza.y);
+    drawCentered(calcolaModificatore(dati.costituzione), coords.mod_costituzione.x, coords.mod_costituzione.y);
+    drawCentered(calcolaModificatore(dati.intelligenza), coords.mod_intelligenza.x, coords.mod_intelligenza.y);
+    drawCentered(calcolaModificatore(dati.saggezza), coords.mod_saggezza.x, coords.mod_saggezza.y);
+    drawCentered(calcolaModificatore(dati.carisma), coords.mod_carisma.x, coords.mod_carisma.y);
+
+    // PF
+    drawCentered(dati.pf || "-", coords.pf_max.x, coords.pf_max.y);
+
+    // Campi lunghi
+    drawCentered(dati.equipaggiamento || "-", coords.equipaggiamento.x, coords.equipaggiamento.y, 80);
+    drawCentered(dati.note || "-", coords.note.x, coords.note.y, 80);
+
+    // Derivati (attenzione a “velocità”/“velocita”)
+    const vel = dati["velocità"] ?? dati.velocita ?? "-";
+    drawCentered(dati.percezionePassiva || "-", coords.percezione_passiva.x, coords.percezione_passiva.y);
+    drawCentered(dati.intelligenzaPassiva || "-", coords.intelligenza_passiva.x, coords.intelligenza_passiva.y);
+    drawCentered(dati.visione || "-", coords.visione.x, coords.visione.y);
+    drawCentered(vel, coords.velocita.x, coords.velocita.y);
+
+    // Competenze
+    const comp = Array.isArray(dati.competenze) ? dati.competenze.join(", ") : (dati.competenze || "-");
+    drawCentered(comp, coords.competenze.x, coords.competenze.y, 100);
+  }
+
+  pdfBtn.addEventListener("click", () => {
+    const JsPDF = getJsPDFCtor();
+    if (!JsPDF) {
+      console.error("jsPDF non trovato: controlla lo script CDN e l’ordine dei tag <script>.");
+      alert("Errore: jsPDF non è caricato. Verifica lo script CDN e che venga caricato prima di scheda.js.");
+      return;
+    }
+
+    const doc = new JsPDF({ unit: "mm", format: "a4", orientation: "portrait" });
+
+    // tenta PNG poi JPG
+    const candidates = ["assets/images/scheda_base.png", "assets/images/scheda_base.jpg"];
+
+    function tryLoadBg(i) {
+      if (i >= candidates.length) {
+        console.warn("Sfondo non caricato: procedo senza background.");
+        drawAll(doc, dati, coords);
+        const nomeFile = `${(dati.nome || "scheda_personaggio").replace(/\s+/g, "_")}.pdf`;
+        doc.save(nomeFile);
+        return;
+      }
+      const path = candidates[i];
+      const img = new Image();
+      img.crossOrigin = "anonymous";
+      img.onload = function () {
+        const ext = path.toLowerCase().endsWith(".png") ? "PNG" : "JPEG";
+        try {
+          doc.addImage(img, ext, 0, 0, 210, 297);
+        } catch (e) {
+          console.warn("addImage fallita, procedo senza sfondo:", e);
+        }
+        drawAll(doc, dati, coords);
+        const nomeFile = `${(dati.nome || "scheda_personaggio").replace(/\s+/g, "_")}.pdf`;
+        doc.save(nomeFile);
+      };
+      img.onerror = function (err) {
+        console.warn("Impossibile caricare sfondo:", path, err);
+        tryLoadBg(i + 1);
+      };
+      img.src = path;
+    }
+
+    tryLoadBg(0);
   });
-})();
 
 // ===============================
 // Utility competenze
@@ -381,4 +463,5 @@ function getCompetenze() {
     competenze.push(el.value);
   });
   return competenze;
+}
 }
