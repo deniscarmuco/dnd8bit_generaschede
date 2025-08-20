@@ -420,7 +420,7 @@ function initScheda() {
     const doc = new JsPDF({ unit: "mm", format: "a4", orientation: "portrait" });
 
     // tenta PNG poi JPG
-    const candidates = ["assets/images/scheda_base.png", "assets/images/scheda_base.jpg"];
+    const candidates = ["assets/images/Scheda_base.png", "assets/images/Scheda_base.jpg"];
 
     function tryLoadBg(i) {
       if (i >= candidates.length) {
