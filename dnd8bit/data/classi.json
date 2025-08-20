@@ -1,0 +1,10 @@
+[
+  { "nome": "Guerriero", "descrizione": "Esperto nel combattimento fisico." },
+  { "nome": "Mago", "descrizione": "Padrone della magia arcana." },
+  { "nome": "Ladro", "descrizione": "Abile nello scassinare e nell'agire furtivamente." },
+  { "nome": "Chierico", "descrizione": "Portatore di guarigione e potere divino." },
+  { "nome": "Bardo", "descrizione": "Maestro delle arti e della musica, capace di incantare." },
+  { "nome": "Druido", "descrizione": "Custode della natura, capace di trasformarsi in animali." },
+  { "nome": "Paladino", "descrizione": "Guerriero sacro, difensore della giustizia." },
+  { "nome": "Stregone", "descrizione": "Utente di magia innata, spesso con poteri misteriosi." }
+]

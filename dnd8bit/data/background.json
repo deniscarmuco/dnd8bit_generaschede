@@ -1,0 +1,10 @@
+[
+  { "nome": "Soldato", "descrizione": "Addestrato alla guerra e alla disciplina." },
+  { "nome": "Accolito", "descrizione": "Devoto servitore di una divinità." },
+  { "nome": "Artigiano", "descrizione": "Specialista nella creazione di oggetti." },
+  { "nome": "Saggio", "descrizione": "Studioso e conoscitore di antiche tradizioni." },
+  { "nome": "Nobile", "descrizione": "Membro di una famiglia influente e rispettata." },
+  { "nome": "Eremita", "descrizione": "Vive in isolamento, lontano dalla società." },
+  { "nome": "Intrattenitore", "descrizione": "Capace di intrattenere con storie e performance." },
+  { "nome": "Cacciatore", "descrizione": "Esperto nella caccia e nella sopravvivenza in natura." }
+]

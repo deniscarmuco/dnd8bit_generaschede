@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Coordinate sulla Scheda</title>
+  <style>
+    body {
+      background: #000;
+      color: #0f0;
+      font-family: monospace;
+      text-align: center;
+    }
+    canvas {
+      border: 2px solid #444;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Clicca sulla scheda per ottenere le coordinate</h1>
+  <p id="coords">X: -, Y: -</p>
+  <canvas id="canvas"></canvas>
+
+  <script>
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+    const img = new Image();
+    img.src = "Scheda_base.png";
+
+    img.onload = () => {
+      canvas.width = img.width;
+      canvas.height = img.height;
+      ctx.drawImage(img, 0, 0);
+    };
+
+    canvas.addEventListener("click", (e) => {
+      const rect = canvas.getBoundingClientRect();
+      const x = Math.round(e.clientX - rect.left);
+      const y = Math.round(e.clientY - rect.top);
+
+      // Conversione pixel → mm (per PDF A4)
+      const mmX = (x * 210) / img.width;
+      const mmY = (y * 297) / img.height;
+
+      const coordsText = `X: ${x}px / ${mmX.toFixed(2)}mm, Y: ${y}px / ${mmY.toFixed(2)}mm`;
+      document.getElementById("coords").textContent = coordsText;
+      console.log(coordsText);
+    });
+  </script>
+</body>
+</html>

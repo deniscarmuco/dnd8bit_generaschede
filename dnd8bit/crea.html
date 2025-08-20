@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Crea Personaggio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="stars"></div>
+  <div class="shooting-stars"></div>
+
+  <div class="container">
+    <h1>Crea il tuo personaggio</h1>
+    <form id="characterForm">
+      <!-- Step 1 - Nome -->
+      <fieldset class="step">
+        <legend>Nome del Personaggio</legend>
+        <input type="text" id="nomeInput" name="nome" required />
+      </fieldset>
+
+      <!-- Step 2 - Razza -->
+      <fieldset class="step">
+        <legend>Razza</legend>
+        <select id="razzaSelect" name="razza" autocomplete="off">
+          <option value="">-- Seleziona razza --</option>
+        </select>
+        <div id="razzaDesc" class="desc-box"></div>
+      </fieldset>
+
+      <!-- Step 3 - Classe -->
+      <fieldset class="step">
+        <legend>Classe</legend>
+        <select id="classeSelect" name="classe" autocomplete="off">
+          <option value="">-- Seleziona classe --</option>
+        </select>
+        <div id="classeDesc" class="desc-box"></div>
+      </fieldset>
+
+      <!-- Step 4 - Background -->
+      <fieldset class="step">
+        <legend>Background</legend>
+        <select id="backgroundSelect" name="background" autocomplete="off">
+          <option value="">-- Seleziona background --</option>
+        </select>
+        <div id="backgroundDesc" class="desc-box"></div>
+      </fieldset>
+
+      <!-- Step 5 - Livello e Allineamento -->
+      <fieldset class="step">
+        <legend>Livello e Allineamento</legend>
+        <label>
+          Livello:
+          <input type="number" name="livello" min="1" max="20" value="1" />
+        </label>
+        <label>
+          Allineamento:
+          <select name="allineamento">
+            <option value="">-- Nessuno --</option>
+            <option value="Legale Buono">Legale Buono</option>
+            <option value="Neutrale Buono">Neutrale Buono</option>
+            <option value="Caotico Buono">Caotico Buono</option>
+            <option value="Legale Neutrale">Legale Neutrale</option>
+            <option value="Neutrale Puro">Neutrale Puro</option>
+            <option value="Caotico Neutrale">Caotico Neutrale</option>
+            <option value="Legale Malvagio">Legale Malvagio</option>
+            <option value="Neutrale Malvagio">Neutrale Malvagio</option>
+            <option value="Caotico Malvagio">Caotico Malvagio</option>
+          </select>
+        </label>
+      </fieldset>
+
+      <!-- Step 6 - Statistiche Base -->
+      <fieldset class="step">
+        <legend>Statistiche Base</legend>
+        <label>
+          Forza:
+          <input type="number" name="forza" min="1" max="20" value="10" />
+        </label>
+        <label>
+          Destrezza:
+          <input type="number" name="destrezza" min="1" max="20" value="10" />
+        </label>
+        <label>
+          Costituzione:
+          <input type="number" name="costituzione" min="1" max="20" value="10" />
+        </label>
+        <label>
+          Intelligenza:
+          <input type="number" name="intelligenza" min="1" max="20" value="10" />
+        </label>
+        <label>
+          Saggezza:
+          <input type="number" name="saggezza" min="1" max="20" value="10" />
+        </label>
+        <label>
+          Carisma:
+          <input type="number" name="carisma" min="1" max="20" value="10" />
+
+        </label>
+        <button type="button" id="roll-stats-btn">Lancia dadi</button>
+      </fieldset>
+
+      <!-- Step 7 - Punti Ferita -->
+      <fieldset class="step">
+        <legend>Punti Ferita</legend>
+        <label>
+          Punti Ferita Massimi:
+          <input type="number" name="pf" min="1" />
+        </label>
+        <div id="pf-msg" style="color: red; font-size: 0.8em; margin-top: 2px;"></div>
+      </fieldset>
+
+      <!-- Step 8 - Bonus Competenza -->
+      <fieldset class="step">
+        <legend>Bonus Competenza</legend>
+        <p>Bonus Competenza: <span id="bonus-competenza">+2</span></p>
+      </fieldset>
+
+      <!-- Step 9 - Abilità -->
+      <fieldset class="step">
+        <legend>Abilità</legend>
+        <div id="abilita-container"></div>
+      </fieldset>
+
+      <!-- Step 10 - Classe Armatura -->
+      <fieldset class="step">
+        <legend>Classe Armatura</legend>
+        <p>Scegli un'armatura:</p>
+        <div id="armature-container">
+          <label><input type="radio" name="armatura" value="Senza Armatura" checked> Senza Armatura</label><br>
+          <label><input type="radio" name="armatura" value="Cuoio"> Cuoio</label><br>
+          <label><input type="radio" name="armatura" value="Maglia"> Maglia</label><br>
+          <label><input type="radio" name="armatura" value="Piastre"> Piastre</label>
+        </div>
+        <p>CA: <span id="ca-value">10</span></p>
+      </fieldset>
+      
+      <!-- Step 11 - Equipaggiamento -->
+      <fieldset class="step">
+        <legend>Equipaggiamento</legend>
+        <textarea name="equipaggiamento" rows="3" placeholder="Armi, armature, oggetti..."></textarea>
+      </fieldset>
+
+      <!-- Step 12 - Note -->
+      <fieldset class="step">
+        <legend>Note</legend>
+        <textarea name="note" rows="3" placeholder="Annotazioni aggiuntive..."></textarea>
+      </fieldset>
+
+      <button type="submit">Genera Scheda</button>
+    </form>
+  </div>
+
+  <script src="js/stelle.js"></script>
+  <script src="js/scheda.js"></script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+[
+  { "nome": "Umano", "descrizione": "Versatile e adattabile, presente in ogni regione." },
+  { "nome": "Elfo", "descrizione": "Agile e longevo, legato alla magia e alla natura." },
+  { "nome": "Nano", "descrizione": "Robusto e determinato, abile minatore e fabbro." },
+  { "nome": "Mezzorco", "descrizione": "Forte e intimidatorio, con un passato di lotte." },
+  { "nome": "Halfling", "descrizione": "Piccolo e astuto, con un amore per la vita semplice." },
+  { "nome": "Tiefling", "descrizione": "Con sangue demoniaco, spesso emarginato dalla società." },
+  { "nome": "Dragonide", "descrizione": "Fiero e potente, con legami ancestrali con i draghi." },
+  { "nome": "Gnomi", "descrizione": "Inventivi e curiosi, amano la tecnologia e la magia." }
+]

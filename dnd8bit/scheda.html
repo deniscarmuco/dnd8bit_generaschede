@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Scheda Personaggio</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="stars"></div>
+  <div class="container">
+    <h1 id="nomePersonaggio"></h1>
+    <p><strong>Razza:</strong> <span id="razza"></span></p>
+    <p><strong>Classe:</strong> <span id="classe"></span></p>
+    <p><strong>Background:</strong> <span id="background"></span></p>
+    <p><strong>Livello:</strong> <span id="livello"></span></p>
+    <p><strong>Allineamento:</strong> <span id="allineamento"></span></p>
+
+    <h2>Statistiche</h2>
+    <ul>
+      <li>Forza: <span id="forza"></span> (<span id="mod-forza"></span>)</li>
+      <li>Destrezza: <span id="destrezza"></span> (<span id="mod-destrezza"></span>)</li>
+      <li>Costituzione: <span id="costituzione"></span> (<span id="mod-costituzione"></span>)</li>
+      <li>Intelligenza: <span id="intelligenza"></span> (<span id="mod-intelligenza"></span>)</li>
+      <li>Saggezza: <span id="saggezza"></span> (<span id="mod-saggezza"></span>)</li>
+      <li>Carisma: <span id="carisma"></span> (<span id="mod-carisma"></span>)</li>
+    </ul>
+
+    <p><strong>PF:</strong> <span id="pf"></span></p>
+    <p><strong>Classe Armatura:</strong> <span id="classeArmatura"></span></p>
+    <p><strong>Equipaggiamento:</strong> <span id="equipaggiamento"></span></p>
+    <p><strong>Note:</strong> <span id="note"></span></p>
+
+    <div id="competenze-container">
+      <p>Seleziona le competenze:</p>
+      <label><input type="checkbox" name="competenza" value="Percezione"> Percezione</label>
+      <label><input type="checkbox" name="competenza" value="Investigare"> Investigare</label>
+      <label><input type="checkbox" name="competenza" value="Atletica"> Atletica</label>
+      <label><input type="checkbox" name="competenza" value="Storia"> Storia</label>
+    </div>
+
+    <button id="download-pdf-btn" class="btn">Scarica PDF</button>
+    <a href="index.html" class="btn">Torna alla Home</a>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="js/scheda.js"></script>
+  <script src="js/stelle.js"></script>
+</body>
+</html>
