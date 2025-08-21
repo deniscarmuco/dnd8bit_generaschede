@@ -6,6 +6,17 @@
   <title>Crea Personaggio</title>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
+  <style>
+    #armature-container label {
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+      margin-bottom: 0.2em;
+    }
+    #armature-container input[type="radio"] {
+      margin: 0;
+    }
+  </style>
 </head>
 <body>
   <div class="stars"></div>
@@ -102,17 +113,7 @@
         <button type="button" id="roll-stats-btn">Lancia dadi</button>
       </fieldset>
 
-      <!-- Step 7 - Punti Ferita -->
-      <fieldset class="step">
-        <legend>Punti Ferita</legend>
-        <label>
-          Punti Ferita Massimi:
-          <input type="number" name="pf" min="1" />
-        </label>
-        <div id="pf-msg" style="color: red; font-size: 0.8em; margin-top: 2px;"></div>
-      </fieldset>
-
-      <!-- Step 8 - Bonus Competenza -->
+      <!-- Step 7 - Bonus Competenza -->
       <fieldset class="step">
         <legend>Bonus Competenza</legend>
         <p>Bonus Competenza: <span id="bonus-competenza">+2</span></p>
@@ -129,12 +130,13 @@
         <legend>Classe Armatura</legend>
         <p>Scegli un'armatura:</p>
         <div id="armature-container">
-          <label><input type="radio" name="armatura" value="Senza Armatura" checked> Senza Armatura</label><br>
-          <label><input type="radio" name="armatura" value="Cuoio"> Cuoio</label><br>
-          <label><input type="radio" name="armatura" value="Maglia"> Maglia</label><br>
+          <label><input type="radio" name="armatura" value="Senza Armatura" checked> Senza Armatura</label>
+          <label><input type="radio" name="armatura" value="Cuoio"> Cuoio</label>
+          <label><input type="radio" name="armatura" value="Maglia"> Maglia</label>
           <label><input type="radio" name="armatura" value="Piastre"> Piastre</label>
         </div>
         <p>CA: <span id="ca-value">10</span></p>
+        <input type="hidden" name="classe_armatura" id="classe_armatura" />
       </fieldset>
       
       <!-- Step 11 - Equipaggiamento -->
@@ -153,7 +155,11 @@
     </form>
   </div>
 
+  <script type="module" src="js/utils/statUtils.js"></script>
+  <script type="module" src="js/utils/domUtils.js"></script>
+  <script type="module" src="js/derivati.js"></script>
+  <script type="module" src="js/uiUpdater.js"></script>
+  <script type="module" src="js/scheda.js"></script>
   <script src="js/stelle.js"></script>
-  <script src="js/scheda.js"></script>
 </body>
 </html>

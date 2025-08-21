@@ -27,7 +27,7 @@
     </ul>
 
     <p><strong>PF:</strong> <span id="pf"></span></p>
-    <p><strong>Classe Armatura:</strong> <span id="classeArmatura"></span></p>
+    <p><strong>Classe Armatura:</strong> <span id="classe_armatura"></span></p>
     <p><strong>Equipaggiamento:</strong> <span id="equipaggiamento"></span></p>
     <p><strong>Note:</strong> <span id="note"></span></p>
 
@@ -44,7 +44,12 @@
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <script src="js/scheda.js"></script>
+  <script type="module" src="js/utils/statUtils.js"></script>
+  <script type="module" src="js/utils/domUtils.js"></script>
+  <script type="module" src="js/derivati.js"></script>
+  <script type="module" src="js/uiUpdater.js"></script>
+  <script type="module" src="js/scheda.js"></script>
+  <script src="js/stampaPdf.js"></script>
   <script src="js/stelle.js"></script>
 </body>
 </html>
