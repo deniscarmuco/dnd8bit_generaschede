@@ -20,9 +20,13 @@ export function aggiornaBonusCompetenza(livelloInput) {
 
 export function aggiornaDerivati(statInputs, livelloInput, razzaSel) {
   // Aggiorna visione e velocità
-  document.getElementById("visione").textContent = calcolaVisione(razzaSel.value);
-  document.getElementById("velocità").textContent = calcolaVelocità(razzaSel.value);
+  const visioneEl = document.getElementById("visione");
+  if (visioneEl) visioneEl.textContent = calcolaVisione(razzaSel.value);
+  const velocitaEl = document.getElementById("velocità");
+  if (velocitaEl) velocitaEl.textContent = calcolaVelocità(razzaSel.value);
   // Aggiorna percezione e intelligenza passiva
-  document.getElementById("percezione-passiva").textContent = calcolaPercezionePassiva(statInputs.saggezza.value, livelloInput.value);
-  document.getElementById("intelligenza-passiva").textContent = calcolaIntelligenzaPassiva(statInputs.intelligenza.value, livelloInput.value);
+  const percezioneEl = document.getElementById("percezione-passiva");
+  if (percezioneEl) percezioneEl.textContent = calcolaPercezionePassiva(statInputs.saggezza.value, livelloInput.value);
+  const intellEl = document.getElementById("intelligenza-passiva");
+  if (intellEl) intellEl.textContent = calcolaIntelligenzaPassiva(statInputs.intelligenza.value, livelloInput.value);
 }

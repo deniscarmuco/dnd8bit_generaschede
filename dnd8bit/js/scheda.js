@@ -63,6 +63,12 @@ const dadiVita = {
   caricaOpzioni("classeSelect", "classi.json", "classeDesc");
   caricaOpzioni("backgroundSelect", "background.json", "backgroundDesc");
 
+  // Funzione per determinare bonus PF per livello (es. Nano delle Colline)
+  function getBonusPfPerLivello() {
+    if (razzaSel && razzaSel.value === "Nano delle Colline") return 1;
+    return 0;
+  }
+
   // Funzioni derivate
   function calcolaVisione() {
     const razza = razzaSel.value;
